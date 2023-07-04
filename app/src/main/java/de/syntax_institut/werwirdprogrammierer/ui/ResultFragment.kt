@@ -34,14 +34,13 @@ class ResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.moneyWon.observe(viewLifecycleOwner) {
-            binding.tvAmountWon.text = getString(R.string.you_won_amount, it)
-            if(it > 0){
-                binding.tvResult.text = getString(R.string.game_won)
-                binding.tvResultEmoji.text = getString(R.string.emoji_won)
-            } else {
-                binding.tvResult.text = getString(R.string.game_over)
-                binding.tvResultEmoji.text = getString(R.string.emoji_lost)            }
+        binding.tvAmountWon.text = getString(R.string.you_won_amount, viewModel.moneyWon)
+        if (viewModel.moneyWon > 0) {
+            binding.tvResult.text = getString(R.string.game_won)
+            binding.tvResultEmoji.text = getString(R.string.emoji_won)
+        } else {
+            binding.tvResult.text = getString(R.string.game_over)
+            binding.tvResultEmoji.text = getString(R.string.emoji_lost)
         }
 
         binding.tvPlayAgain.setOnClickListener {

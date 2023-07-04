@@ -52,10 +52,7 @@ class QuizFragment : Fragment() {
             binding.tvAnswerB.text = it.answerB
             binding.tvAnswerC.text = it.answerC
             binding.tvAnswerD.text = it.answerD
-        }
-
-        viewModel.moneyWon.observe(viewLifecycleOwner){
-            binding.tvPrice.text = it.toString()
+            binding.tvPrice.text = it.price.toString()
         }
 
         viewModel.gameOver.observe(viewLifecycleOwner){

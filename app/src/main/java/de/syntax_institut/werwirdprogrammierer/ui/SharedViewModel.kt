@@ -12,8 +12,8 @@ class SharedViewModel : ViewModel() {
     private val questions = appRepository.questions
     private var currentQuestionIndex = 0
 
-    private var _moneyWon = MutableLiveData(0)
-    val moneyWon: LiveData<Int>
+    private var _moneyWon = 0
+    val moneyWon: Int
         get() = _moneyWon
 
     private var _currentQuestion = MutableLiveData(questions.first())
@@ -26,10 +26,10 @@ class SharedViewModel : ViewModel() {
 
     fun checkAnswer(answerIndex: Int) {
         if (_currentQuestion.value?.rightAnswer == answerIndex) {
-            _moneyWon.value = _currentQuestion.value?.price
+            _moneyWon = _currentQuestion.value?.price ?: 0
             nextRound()
         } else {
-            _moneyWon.value = 0
+            _moneyWon = 0
             endGame()
         }
     }
@@ -37,7 +37,7 @@ class SharedViewModel : ViewModel() {
     fun restartGame(){
         _gameOver.value = false
         currentQuestionIndex = 0
-        _moneyWon.value = 0
+        _moneyWon = 0
         _currentQuestion.value = questions.first()
     }
 
