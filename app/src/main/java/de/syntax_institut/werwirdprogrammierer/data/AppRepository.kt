@@ -124,7 +124,7 @@ class AppRepository {
                 64000
             ),
             Question(
-                "Wo findet man die Logik einer MVV App?",
+                "Wo findet man die Logik einer MVVM App?",
                 "Repository",
                 "ViewModel",
                 "Fragment",
